@@ -37,9 +37,12 @@ public class GroundEnemyBehaviourScript : EnemyBehaviourScript
     {                
         if(other.tag == "BeamLight")
         {
-            StopMovement();
-            currentState = state.paralyzed;
-            transform.GetComponentsInChildren<WeakSpotScript>()[0].ToggleWeakSpot(true);
+            if(currentState != state.dead){
+                StopMovement();
+                currentState = state.paralyzed;
+            }
+            
+            transform.GetComponentsInChildren<WeakSpotScript>()[0].ToggleWeakSpot(true);            
             lightsActive++;
         }
         else if(other.tag == "CircleLight")

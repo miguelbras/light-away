@@ -43,8 +43,11 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
         }
         else if(other.tag == "BeamLight")
         {
-            StopMovement();
-            currentState = state.paralyzed;
+            if(currentState != state.dead){
+                StopMovement();
+                currentState = state.paralyzed;
+            }
+            
             lightsActive++;
         }
         else if(other.tag == "CircleLight")
