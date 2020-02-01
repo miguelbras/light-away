@@ -5,8 +5,11 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 public class LightFocus : MonoBehaviour
 {
+    
     [SerializeField]
     private Transform marker;
+
+    private bool beamActive;
 
     private Light2D light;
     private PolygonCollider2D poly;
@@ -28,12 +31,23 @@ public class LightFocus : MonoBehaviour
             var angle = Mathf.Atan2(marker.localPosition.y, marker.localPosition.x) * Mathf.Rad2Deg;
 
             transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            beamActive = true;
         }
         else
         {
 
             light.enabled = false;
             poly.enabled = false;
+            beamActive = false;
         }
     }
+
+    public bool BeamActive
+    {
+        get
+        {
+            return BeamActive;
+        }
+    }
+
 }

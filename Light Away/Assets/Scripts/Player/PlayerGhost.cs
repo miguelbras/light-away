@@ -7,6 +7,7 @@ public class PlayerGhost : Player
 {
     
     private bool isGhost = true;
+    private bool isDashing = true;
 
     [SerializeField]
     private GameObject camera_object;
@@ -14,21 +15,29 @@ public class PlayerGhost : Player
 
     private Coroutine coroutine;
 
+    private int dashForce;
+    private float dashTime;
+    private float startDashTime;
+
     void Start()
     {
+        facingRight = true;
         ground = LayerMask.GetMask("Ground");
 
         r2d = GetComponent<Rigidbody2D>();
         camera_component = camera_object.GetComponent<Camera>();
 
-        coroutine = null;   
+        coroutine = null;
+
+        dashForce = 5;
+        startDashTime = 0.4f;
     }
 
     void FixedUpdate()
     {
         movement.x = Input.GetAxisRaw("Horizontal" + id);
         movement.y = Input.GetAxisRaw("Vertical" + id);
-
+        flip(movement.x);
         Move();
         MoveVertical();
         if (Input.GetAxisRaw("Jump" + id) != 0 && isGrounded() && !isGhost)
@@ -37,7 +46,6 @@ public class PlayerGhost : Player
             updateBody();
         if (Input.GetAxis("Fire1_" + id) != 0)
             fireAction();
-
         checkIfIsInLight();
         clampMeToCamera();
     }
@@ -116,20 +124,10 @@ public class PlayerGhost : Player
         }
     }
 
-    void OnTriggerExit2D(Collider2D collider)
-    {
-        Debug.Log("exited light");
-        //if (collider.gameObject.tag == "Light")
-        //    StartCoroutine(coroutine);
-        //Invoke("turnIntoGhost", 5);
-    }
-
     private IEnumerator LeaveGhost()
     {
         yield return new WaitForSeconds(4);
         turnIntoGhost();
     }
-
-
 
 }
