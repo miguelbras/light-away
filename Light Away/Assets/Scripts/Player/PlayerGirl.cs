@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class PlayerGirl : Player
 {
-
-    public GameObject obj;
-    public HealthBar healthBar;
+    [SerializeField]
+    private GameObject obj;
+    private HealthBar healthBar;
     bool isDead = false;
 
     Animator anim;
@@ -18,7 +18,7 @@ public class PlayerGirl : Player
     {
         ground = LayerMask.GetMask("Ground");
         r2d = GetComponent<Rigidbody2D>();
-        //healthBar = obj.GetComponent<HealthBar>();
+        healthBar = obj.GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
     }
     void FixedUpdate()
