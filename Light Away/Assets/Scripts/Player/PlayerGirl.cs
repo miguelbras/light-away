@@ -33,6 +33,8 @@ public class PlayerGirl : Player
                 Jump();
             if (Input.GetAxisRaw("Fire1_" + id) != 0)
                 fireAction();
+            if (Input.GetKeyDown(KeyCode.T))
+                oof();
         }
 
 
@@ -60,4 +62,13 @@ public class PlayerGirl : Player
         isDead = false;
         anim.SetBool("isDying", false);
     }
+
+    
+    private void oof()
+    {
+        Vector2 diff = new Vector2(10, 15);
+        diff.Normalize();
+        r2d.AddForce(diff * 2, ForceMode2D.Impulse);
+    }
+    
 }
