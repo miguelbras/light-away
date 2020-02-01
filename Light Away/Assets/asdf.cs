@@ -19,6 +19,6 @@ public class asdf : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.tag == "Player")
-            collision.transform.SendMessage("Death");
+            collision.transform.SendMessage("takeDamage");
     }
 }
