@@ -202,6 +202,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff, type: 3}
+--- !u!1 &944389629 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4587654599394591615, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff,
+    type: 3}
+  m_PrefabInstance: {fileID: 873084120}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1008119299
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,6 +395,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GhostPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 5263133767929674571, guid: c21f7e44748017f489d7b292516cc37c,
+        type: 3}
+      propertyPath: camera_object
+      value: 
+      objectReference: {fileID: 944389629}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c21f7e44748017f489d7b292516cc37c, type: 3}
 --- !u!1001 &1188264399

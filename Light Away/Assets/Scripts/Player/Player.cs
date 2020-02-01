@@ -79,7 +79,7 @@ public class Player : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject && colliders[i].tag != "Light")
+                if (colliders[i].gameObject != gameObject && colliders[i].tag != "BeamLight" && colliders[i].tag != "CircleLight")
                     return true;
             }
         }

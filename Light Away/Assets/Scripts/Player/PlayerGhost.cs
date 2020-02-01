@@ -85,7 +85,7 @@ public class PlayerGhost : Player
     }
 
 
-    protected void bump()
+    public void bump()
     {
         r2d.velocity = new Vector2(0, 0);
         r2d.AddForce(new Vector2(0, bumpForce), ForceMode2D.Impulse);
@@ -94,7 +94,7 @@ public class PlayerGhost : Player
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Light")
+        if (collider.gameObject.tag == "BeamLight" || collider.gameObject.tag == "CircleLight")
         {
             if(coroutine != null)
             {
@@ -103,7 +103,6 @@ public class PlayerGhost : Player
 
             if (Physics2D.OverlapCircle(transform.position, .1f, ground) == null)
             {
-                Debug.Log("exited light222");
                 coroutine = StartCoroutine(LeaveGhost());
                 turnIntoHuman();
             }
