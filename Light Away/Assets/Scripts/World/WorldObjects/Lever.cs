@@ -2,8 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class asdf : MonoBehaviour
+public class Lever : MonoBehaviour
 {
+    [SerializeField]
+    PICK_UP[] required;
+
+    bool isActivated = false;
+
+    [SerializeField]
+    GameObject worldManager;
+
+    [SerializeField]
+    GameObject requiredBubble;
 
     // Start is called before the first frame update
     void Start()
@@ -14,11 +24,12 @@ public class asdf : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    public void interact()
     {
-        if (collision.transform.tag == "Player")
-            collision.transform.SendMessage("Death");
+
     }
+
 }

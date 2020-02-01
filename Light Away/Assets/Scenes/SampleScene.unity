@@ -299,6 +299,7 @@ GameObject:
   - component: {fileID: 246845310}
   - component: {fileID: 246845309}
   - component: {fileID: 246845308}
+  - component: {fileID: 246845313}
   m_Layer: 0
   m_Name: Tmp_Girl2
   m_TagString: Player
@@ -437,6 +438,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &246845313
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246845307}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68b1b743d8462cf40960be537a5b75a5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &933279412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2698,6 +2718,7 @@ MonoBehaviour:
   - {fileID: 180100033}
   - {fileID: 127942922}
   id: 2
+  camera_object: {fileID: 1533791357}
 --- !u!212 &1250768995
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2737,7 +2758,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: b73a14643d1b73244b1ec815c40b5ab4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f4bfcab9fb6b99d4ca81471a8c354e49, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3021,7 +3042,7 @@ GameObject:
   - component: {fileID: 1732347170}
   - component: {fileID: 1732347171}
   m_Layer: 0
-  m_Name: Test child
+  m_Name: DeathCube
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -3106,7 +3127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1732347166}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.13, y: 1.03, z: -5.1449633}
+  m_LocalPosition: {x: -6.68, y: -0.4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3150,9 +3171,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3f4e781cb697c946a0e8576200a3eef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!1 &2032195669
 GameObject:
   m_ObjectHideFlags: 0
@@ -3242,7 +3260,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2134759784
 Transform:
   m_ObjectHideFlags: 0

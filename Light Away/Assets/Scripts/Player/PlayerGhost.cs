@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,12 +8,19 @@ public class PlayerGhost : Player
     
     private bool isGhost = true;
 
+    [SerializeField]
+    private GameObject camera_object;
+    private Camera camera_component;
+
     private Coroutine coroutine;
 
     void Start()
     {
         ground = LayerMask.GetMask("Ground");
+
         r2d = GetComponent<Rigidbody2D>();
+        camera_component = camera_object.GetComponent<Camera>();
+
         coroutine = null;   
     }
 
@@ -31,6 +39,18 @@ public class PlayerGhost : Player
             fireAction();
 
         checkIfIsInLight();
+        clampMeToCamera();
+    }
+
+    private void clampMeToCamera()
+    {
+        Vector3 lowerLeftCorner = camera_component.ViewportToWorldPoint(Vector3.zero, 0);
+        Vector3 upperRightCorner = camera_component.ViewportToWorldPoint(new Vector3(1.0f, 1.0f, 0));
+        transform.position = new Vector3(
+            Mathf.Clamp(transform.position.x, lowerLeftCorner.x, upperRightCorner.x),
+            Mathf.Clamp(transform.position.y, lowerLeftCorner.y, upperRightCorner.y),
+            0
+            ); 
     }
 
     // Update is called once per frame
