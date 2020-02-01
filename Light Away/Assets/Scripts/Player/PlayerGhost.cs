@@ -7,6 +7,15 @@ public class PlayerGhost : Player
     
     private bool isGhost = true;
 
+    private Coroutine coroutine;
+
+    void Start()
+    {
+        ground = LayerMask.GetMask("Ground");
+        r2d = GetComponent<Rigidbody2D>();
+        coroutine = null;   
+    }
+
     void FixedUpdate()
     {
         movement.x = Input.GetAxisRaw("Horizontal" + id);
@@ -22,6 +31,12 @@ public class PlayerGhost : Player
             fireAction();
 
         checkIfIsInLight();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Debug.Log(Physics2D.OverlapCircle(transform.position, .1f, ground));
     }
 
     private void MoveVertical()
@@ -65,16 +80,36 @@ public class PlayerGhost : Player
 
     void OnTriggerStay2D(Collider2D collider)
     {
-        Debug.Log("Detected something2");
         if (collider.gameObject.tag == "Light")
-            turnIntoHuman();
+        {
+            if(coroutine != null)
+            {
+                StopCoroutine(coroutine);
+            }
+
+            if (Physics2D.OverlapCircle(transform.position, .1f, ground) == null)
+            {
+                Debug.Log("exited light222");
+                coroutine = StartCoroutine(LeaveGhost());
+                turnIntoHuman();
+            }
+        }
     }
 
     void OnTriggerExit2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Light")
-            Invoke("turnIntoGhost", 5);
-        //turnIntoGhost();
+        Debug.Log("exited light");
+        //if (collider.gameObject.tag == "Light")
+        //    StartCoroutine(coroutine);
+        //Invoke("turnIntoGhost", 5);
     }
+
+    private IEnumerator LeaveGhost()
+    {
+        yield return new WaitForSeconds(4);
+        turnIntoGhost();
+    }
+
+
 
 }

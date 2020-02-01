@@ -33,7 +33,7 @@ public class LightFocus : MonoBehaviour
         {
 
             light.enabled = false;
-            poly.enabled = true;
+            poly.enabled = false;
         }
     }
 }
