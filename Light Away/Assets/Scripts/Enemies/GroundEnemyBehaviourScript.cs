@@ -62,10 +62,14 @@ public class GroundEnemyBehaviourScript : EnemyBehaviourScript
 
     void OnTriggerExit2D(Collider2D other)
     {           
-        if(other.tag == "BeamLight" && currentState == state.paralyzed)
+        if(other.tag == "BeamLight")
         {
-            currentState = state.idle;
             lightsActive--;
+
+            if(currentState == state.paralyzed)
+            {
+                currentState = state.idle;
+            }                        
         }
         else if(other.tag=="CircleLight"){
             lightsActive--;            

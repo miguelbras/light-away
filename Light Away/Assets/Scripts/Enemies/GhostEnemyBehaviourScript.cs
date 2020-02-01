@@ -38,16 +38,22 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
 
     void OnTriggerEnter2D(Collider2D other)
     {    
-        if(other.tag == "GhostPlayer"){
+        if(other.tag == "GhostPlayer" && lightsActive == 0){
             Die();
         }
         else if(other.tag == "BeamLight")
         {
             StopMovement();
             currentState = state.paralyzed;
+            lightsActive++;
+        }
+        else if(other.tag == "CircleLight")
+        {
+            lightsActive++;
         }
         else if(other.tag == "LightPlayer" && canAct()){
             AttackLight();
+            lightsActive++;
         }        
     }
 
@@ -60,9 +66,17 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
 
     void OnTriggerExit2D(Collider2D other)
     {           
-        if(other.tag == "BeamLight" && currentState == state.paralyzed)
+        if(other.tag == "BeamLight")
         {
-            currentState = state.idle;
+            lightsActive--;
+
+            if(currentState == state.paralyzed)
+            {
+                currentState = state.idle;
+            }                        
+        }
+        else if(other.tag=="CircleLight"){
+            lightsActive--;            
         }
     }    
 }
