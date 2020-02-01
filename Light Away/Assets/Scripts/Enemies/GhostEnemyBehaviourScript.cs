@@ -58,7 +58,10 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
 
     void OnTriggerStay2D(Collider2D other)
     {           
-        if(canAct() && other.tag == "LightPlayer"){
+        if(other.tag == "GhostPlayer" && lightsActive == 0){
+            Die();
+        }
+        else if(canAct() && other.tag == "LightPlayer"){
             AttackLight();        
         }
     }

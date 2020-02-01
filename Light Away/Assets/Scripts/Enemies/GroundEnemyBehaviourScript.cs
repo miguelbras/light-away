@@ -21,6 +21,7 @@ public class GroundEnemyBehaviourScript : EnemyBehaviourScript
                 StopMovement();
             }
         }
+        animator.SetBool("isMoving", currentState == state.moving); 
     }
 
     override
