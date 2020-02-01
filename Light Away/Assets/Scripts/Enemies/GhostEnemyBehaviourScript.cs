@@ -53,7 +53,6 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
         }
         else if(other.tag == "LightPlayer" && canAct()){
             AttackLight();
-            lightsActive++;
         }        
     }
 
