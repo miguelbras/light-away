@@ -1,0 +1,1 @@
+﻿ public enum PICK_UP { WRENCH, COGWHEELS, BLUE_GEM, RED_GEM, GREEN_GEM };
