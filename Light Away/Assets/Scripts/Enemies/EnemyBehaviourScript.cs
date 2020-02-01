@@ -42,6 +42,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     // current state of the enemy
     protected state currentState;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +55,8 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
         spriteRend = GetComponent<SpriteRenderer>();
         selfCollider = GetComponent<Collider2D>();
         groundCollider = GetComponentInChildren<BoxCollider2D>();        
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
     }
 
     // Update is called once per frame

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 63404581}
   - component: {fileID: 63404582}
   - component: {fileID: 63404583}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WeakSpot
   m_TagString: WeakSpot
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1925028950447865994}
   - component: {fileID: 283889781}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -125,7 +125,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.63, y: 0.75663316}
+  m_Size: {x: 0.51, y: 0.75663316}
   m_EdgeRadius: 0
 --- !u!1 &1925028951190358572
 GameObject:
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 1925028951190358573}
   - component: {fileID: 611279584}
   - component: {fileID: 611279586}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundEnemy
   m_TagString: GroundEnemy
   m_Icon: {fileID: 0}
@@ -249,6 +249,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightPlayer: {fileID: 0}
   ghostPlayer: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!60 &611279584
 PolygonCollider2D:
   m_ObjectHideFlags: 0

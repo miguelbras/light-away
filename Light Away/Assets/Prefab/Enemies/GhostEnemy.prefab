@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2206193323453383901}
   - component: {fileID: 7203648101732575457}
   - component: {fileID: 1882451063}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GhostEnemy
   m_TagString: GhostEnemy
   m_Icon: {fileID: 0}
@@ -120,6 +120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lightPlayer: {fileID: 0}
   ghostPlayer: {fileID: 0}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!61 &7203648101732575457
 BoxCollider2D:
   m_ObjectHideFlags: 0
