@@ -21,6 +21,7 @@ public class PlayerGhost : Player
         if (Input.GetAxis("Fire1_" + id) != 0)
             fireAction();
 
+        checkIfIsInLight();
     }
 
     private void MoveVertical()
@@ -40,9 +41,40 @@ public class PlayerGhost : Player
         isGhost = !isGhost;
     }
 
+    private void turnIntoGhost()
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+        isGhost = true;
+    }
+
+    private void turnIntoHuman()
+    {
+        GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        isGhost = false;
+    }
+
     private void fireAction()
     {
         Debug.Log("Ghost pressing things");
+    }
+
+    private void checkIfIsInLight()
+    {
+        
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        Debug.Log("Detected something2");
+        if (collider.gameObject.tag == "Light")
+            turnIntoHuman();
+    }
+
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Light")
+            Invoke("turnIntoGhost", 5);
+        //turnIntoGhost();
     }
 
 }
