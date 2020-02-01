@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class CameraLookAt : MonoBehaviour
 {
+    [SerializeField]
+    Transform player;
     // Start is called before the first frame update
     void Start()
     {
@@ -11,8 +13,8 @@ public class NewBehaviourScript : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 }

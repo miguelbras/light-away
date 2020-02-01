@@ -6,8 +6,11 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
 {
     protected Animator animator;
     protected Rigidbody2D rigidBody; 
-
+    protected Collider2D selfCollider;
+    protected Collider2D groundCollider;
     protected SpriteRenderer spriteRend;    
+
+    protected enum state {idle, moving, paralyzed, eating, dead};
 
     [SerializeField]
     protected GameObject lightPlayer;
@@ -15,39 +18,45 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     [SerializeField]
     protected GameObject ghostPlayer;
 
-    protected float aIDistance = 2.5f;
+    // maximum distance to start following player
+    protected float aIDistance = 5f;
+
+    // seconds that the enemy stays dead
+    protected float deadTimer = 2;
+
+    // seconds that the enemy stays eating
+    protected float eatTimer = 2;
+
+    // seconds that the enemy stays paralyzed after the beam disappears
+    protected float paralyzeTimer = 2;
 
     // base speed of the enemy
     protected float speed = 1;
+
     // indication of the direction of the sprite
     protected bool isFacingLeft;
-    // indication if is on base light
-    protected bool onLight;
-    // indication if is on focused light
-    protected bool onFocusedLight;
-    // indication if enemy is eating a piece of light
-    protected bool isEating;
-    // indication if enemy is dead or dying
-    protected bool isDead;
+    
+    // amount of light focus on the enemy
+    protected int lightsActive;
+
+    // current state of the enemy
+    protected state currentState;
+
 
     // Start is called before the first frame update
     void Start()
     {
         isFacingLeft = false;
-        onLight = false;
-        onFocusedLight = false;
-        isDead = false;
-        isEating = false;
+        currentState = state.idle;
+        lightsActive = 0;
 
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
-        
-        // Disable groundcollider to interact with player
-        if(GetComponentInChildren<BoxCollider2D>()){
-            Physics2D.IgnoreCollision(lightPlayer.GetComponent<Collider2D>(), GetComponentInChildren<BoxCollider2D>());
-            //Physics2D.IgnoreCollision(ghostPlayer.GetComponent<Collider2D>(), GetComponentInChildren<Collider2D>());
-        }
+        selfCollider = GetComponent<Collider2D>();
+        groundCollider = GetComponentInChildren<BoxCollider2D>();        
+
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
     }
 
     // Update is called once per frame
@@ -98,18 +107,29 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     }
 
     // Kill enemy
-    public void Die(){  
-        isDead = true;
-        speed = 0;        
-        Destroy(GetComponent<Collider2D>());
-        //Destroy(GetComponentInChildren<Collider2D>());
-        StopMovement();
-        StartCoroutine("Fade"); 
+    public void Die(){
+        if(currentState != state.dead){
+            currentState = state.dead; 
+            //Destroy(GetComponent<Collider2D>());
+            //Destroy(GetComponentInChildren<Collider2D>());
+            StopMovement();
+            StartCoroutine("FadeOut"); 
+        }
+    }
+
+    public bool canAct(){
+        return (currentState == state.idle || currentState == state.moving);
     }
 
     // Routine called to fade out enemy
-    IEnumerator Fade() 
+    IEnumerator FadeOut()
     {
+        // Disable groundcollider to interact with player
+        if(groundCollider){
+            Physics2D.IgnoreCollision(lightPlayer.GetComponent<Collider2D>(), groundCollider);
+            Physics2D.IgnoreCollision(ghostPlayer.GetComponent<Collider2D>(), groundCollider);
+        }
+
         for (float f = 1f; f >= -0.05f; f -= 0.05f) 
         {
             Color c = spriteRend.color;
@@ -118,14 +138,37 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
             yield return new WaitForSeconds(0.05f);
         }
         
-        Destroy(gameObject);
+        yield return new WaitForSeconds(deadTimer);
+        StartCoroutine("FadeIn"); 
+    }
+
+    IEnumerator FadeIn()
+    {
+        for (float f = 0f; f < 1f; f += 0.05f) 
+        {
+            Color c = spriteRend.color;
+            c.a = f;
+            spriteRend.color = c;
+            yield return new WaitForSeconds(0.25f);
+        }
+
+        currentState = state.idle;
+
+        // Activate groundcollider to interact with player
+        if(groundCollider){
+            Physics2D.IgnoreCollision(lightPlayer.GetComponent<Collider2D>(), groundCollider, false);
+            Physics2D.IgnoreCollision(ghostPlayer.GetComponent<Collider2D>(), groundCollider, false);
+        }
     }
 
     // Routine called to do eating animation
-    IEnumerator Eating() 
+    IEnumerator Eating()
     {
-        isEating = true;
-        yield return new WaitForSeconds(2);        
-        isEating = false;
+        currentState = state.eating;
+        yield return new WaitForSeconds(eatTimer); 
+
+        if(currentState == state.eating)
+            currentState = state.idle;
     }
+
 }
