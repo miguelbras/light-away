@@ -10,4 +10,9 @@ public class WeakSpotScript : MonoBehaviour
             transform.GetComponentsInParent<EnemyBehaviourScript>()[0].Die();
         }            
     }
+
+    public void ToggleWeakSpot(bool active)
+    {
+        GetComponentInChildren<BoxCollider2D>().enabled = active;        
+    }
 }

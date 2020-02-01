@@ -9,6 +9,9 @@ TagManager:
   - GhostPlayer
   - GhostEnemy
   - WeakSpot
+  - Light
+  - CircleLight
+  - BeamLight
   layers:
   - Default
   - TransparentFX

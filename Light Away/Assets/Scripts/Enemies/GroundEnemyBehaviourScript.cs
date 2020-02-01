@@ -33,9 +33,21 @@ public class GroundEnemyBehaviourScript : EnemyBehaviourScript
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    {        
-        
-        if(other.tag=="LightPlayer" && canAct()){
+    {                
+        if(other.tag == "BeamLight")
+        {
+            StopMovement();
+            currentState = state.paralyzed;
+            transform.GetComponentsInChildren<WeakSpotScript>()[0].ToggleWeakSpot(true);
+            lightsActive++;
+        }
+        else if(other.tag == "CircleLight")
+        {
+            transform.GetComponentsInChildren<WeakSpotScript>()[0].ToggleWeakSpot(true);
+            lightsActive++;
+        }
+        else if(other.tag == "LightPlayer" && canAct())
+        {
             AttackLight();
         }
         
@@ -46,5 +58,23 @@ public class GroundEnemyBehaviourScript : EnemyBehaviourScript
         if(other.tag == "LightPlayer" && canAct()){
             AttackLight();
         }
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {           
+        if(other.tag == "BeamLight" && currentState == state.paralyzed)
+        {
+            currentState = state.idle;
+            lightsActive--;
+        }
+        else if(other.tag=="CircleLight"){
+            lightsActive--;            
+        }
+
+        if(lightsActive == 0)
+        {
+            transform.GetComponentsInChildren<WeakSpotScript>()[0].ToggleWeakSpot(false);
+        }
+
     }
 }

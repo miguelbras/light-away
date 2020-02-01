@@ -19,7 +19,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     protected GameObject ghostPlayer;
 
     // maximum distance to start following player
-    protected float aIDistance = 10f;
+    protected float aIDistance = 5f;
 
     // seconds that the enemy stays dead
     protected float deadTimer = 2;
@@ -27,10 +27,17 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     // seconds that the enemy stays eating
     protected float eatTimer = 2;
 
+    // seconds that the enemy stays paralyzed after the beam disappears
+    protected float paralyzeTimer = 2;
+
     // base speed of the enemy
     protected float speed = 1;
+
     // indication of the direction of the sprite
     protected bool isFacingLeft;
+    
+    // amount of light focus on the enemy
+    protected int lightsActive;
 
     // current state of the enemy
     protected state currentState;
@@ -40,8 +47,9 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     {
         isFacingLeft = false;
         currentState = state.idle;
+        lightsActive = 0;
 
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         selfCollider = GetComponent<Collider2D>();
@@ -159,4 +167,5 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
         if(currentState == state.eating)
             currentState = state.idle;
     }
+
 }

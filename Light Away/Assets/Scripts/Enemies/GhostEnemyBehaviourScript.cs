@@ -24,14 +24,15 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
                 StopMovement();
             }
         }
+        animator.SetBool("isMoving", currentState == state.moving); 
     }
 
     override
     public void HandleMovement(){        
+        
         // Calculates direction for straight line to light player
         float directionX = Mathf.Min((lightPlayer.transform.position.x - transform.position.x) / distanceToLight, speed);
         float directionY = Mathf.Min((lightPlayer.transform.position.y - transform.position.y) / distanceToLight, speed);
-
         rigidBody.velocity = new Vector2(directionX * speed, directionY * speed);             
     }
 
@@ -39,6 +40,11 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
     {    
         if(other.tag == "GhostPlayer"){
             Die();
+        }
+        else if(other.tag == "BeamLight")
+        {
+            StopMovement();
+            currentState = state.paralyzed;
         }
         else if(other.tag == "LightPlayer" && canAct()){
             AttackLight();
@@ -52,5 +58,11 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
         }
     }
 
-    
+    void OnTriggerExit2D(Collider2D other)
+    {           
+        if(other.tag == "BeamLight" && currentState == state.paralyzed)
+        {
+            currentState = state.idle;
+        }
+    }    
 }

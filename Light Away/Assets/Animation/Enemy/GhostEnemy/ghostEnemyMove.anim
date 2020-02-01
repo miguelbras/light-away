@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ghostEnemyIdle
+  m_Name: ghostEnemyMove
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,9 +20,9 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 9fa2b38ee6ac8714d8cb74515a1e6c48, type: 3}
+      value: {fileID: 21300000, guid: 5e82ebc7272433947837b8a65653ebf8, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: d15267c0c64e02b43a0aeafbe53f310a, type: 3}
+      value: {fileID: 21300000, guid: bb57aa387997a984da26bac983149ddb, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -42,8 +42,8 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 9fa2b38ee6ac8714d8cb74515a1e6c48, type: 3}
-    - {fileID: 21300000, guid: d15267c0c64e02b43a0aeafbe53f310a, type: 3}
+    - {fileID: 21300000, guid: 5e82ebc7272433947837b8a65653ebf8, type: 3}
+    - {fileID: 21300000, guid: bb57aa387997a984da26bac983149ddb, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
