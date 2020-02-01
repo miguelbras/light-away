@@ -323,6 +323,8 @@ MonoBehaviour:
   - {fileID: 127863205}
   - {fileID: 59801290}
   id: 1
+  obj: {fileID: 0}
+  healthBar: {fileID: 0}
 --- !u!50 &246845309
 Rigidbody2D:
   serializedVersion: 4
@@ -471,7 +473,7 @@ GameObject:
   - component: {fileID: 933279416}
   m_Layer: 0
   m_Name: Beam Point Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2830,6 +2832,7 @@ GameObject:
   - component: {fileID: 1360835754}
   - component: {fileID: 1360835756}
   - component: {fileID: 1360835755}
+  - component: {fileID: 1360835757}
   m_Layer: 0
   m_Name: Marker
   m_TagString: Untagged
@@ -2913,6 +2916,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1360835757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1360835753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf499d351177e1b4aa59ba81912dbd9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bar: {fileID: 0}
 --- !u!1 &1533791357
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,9 +3197,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2032195671}
   - component: {fileID: 2032195670}
+  - component: {fileID: 2032195672}
   m_Layer: 0
   m_Name: Point Light 2D
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3243,6 +3260,22 @@ Transform:
   m_Father: {fileID: 1271672213}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &2032195672
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2032195669}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 4.5
 --- !u!1 &2134759783
 GameObject:
   m_ObjectHideFlags: 0

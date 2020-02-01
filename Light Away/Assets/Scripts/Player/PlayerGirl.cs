@@ -7,7 +7,7 @@ public class PlayerGirl : Player
 {
 
     public GameObject obj;
-    HealthBar healthBar;
+    public HealthBar healthBar;
     bool isDead = false;
 
     Animator anim;
@@ -18,9 +18,7 @@ public class PlayerGirl : Player
     {
         ground = LayerMask.GetMask("Ground");
         r2d = GetComponent<Rigidbody2D>();
-        healthBar = obj.GetComponent<HealthBar>();
-    }
-
+        //healthBar = obj.GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
     }
     void FixedUpdate()
