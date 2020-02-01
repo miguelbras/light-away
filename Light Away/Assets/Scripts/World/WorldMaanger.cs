@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class WorldMaanger : MonoBehaviour
 {
@@ -42,6 +43,7 @@ public class WorldMaanger : MonoBehaviour
         {
             itemsInIventory.Add(val, 0);
         }
+        itemsInIventory[PICK_UP.WRENCH] = 1;
     }
 
     // Update is called once per frame
@@ -76,7 +78,7 @@ public class WorldMaanger : MonoBehaviour
                 handlePause();
                 break;
             case MENU_STATE.EXIT:
-                Application.Quit();
+                SceneManager.LoadScene(0);
                 break;
         }
     }
@@ -116,5 +118,20 @@ public class WorldMaanger : MonoBehaviour
             Time.timeScale = 1f;
             pauseCanvas.SetActive(false);
         }
+    }
+
+    //Checks if the players has the determined item
+    public bool hasRequiredObject(PICK_UP item)
+    {
+        int amount = 0;
+        itemsInIventory.TryGetValue(item, out amount);
+        return (amount > 0);
+    }
+
+    //Removes item after using it
+    public void removeItem(PICK_UP item)
+    {
+        if(itemsInIventory[item] > 0)
+            itemsInIventory[item] = itemsInIventory[item] - 1;
     }
 }
