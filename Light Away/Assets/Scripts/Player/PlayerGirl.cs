@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class PlayerGirl : Player
 {
+
+    public GameObject obj;
+    HealthBar healthBar;
+
+    void Start()
+    {
+        ground = LayerMask.GetMask("Ground");
+        r2d = GetComponent<Rigidbody2D>();
+        healthBar = obj.GetComponent<HealthBar>();
+    }
+
     void FixedUpdate()
     {
         movement.x = Input.GetAxisRaw("Horizontal" + id);
@@ -19,5 +30,8 @@ public class PlayerGirl : Player
     protected void fireAction()
     {
         Debug.Log("Bruh");
+        healthBar.setSize(0.4f);
     }
+
+
 }
