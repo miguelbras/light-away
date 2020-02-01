@@ -20,6 +20,8 @@ public class Player : MonoBehaviour
 
     protected float speed = 200;
 
+    protected LayerMask ground;
+
     [SerializeField]
     protected GameObject[] groundPoints;
 
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        ground = LayerMask.GetMask("Ground");
         r2d = GetComponent<Rigidbody2D>();
     }
 
@@ -55,7 +58,7 @@ public class Player : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].transform.tag != "Player")
+                if (colliders[i].gameObject != gameObject && colliders[i].tag != "Light")
                     return true;
             }
         }
