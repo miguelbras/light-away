@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class asdf : MonoBehaviour
+public class CameraLookAt : MonoBehaviour
 {
-    public LayerMask ground;
-
+    [SerializeField]
+    Transform player;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,8 +13,8 @@ public class asdf : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //Debug.Log(Physics2D.OverlapCircle(transform.position, .1f, ground));
+        transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
     }
 }

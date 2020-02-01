@@ -31,9 +31,12 @@ public class Player : MonoBehaviour
     protected Rigidbody2D r2d;
     protected Vector2 movement;
 
+    protected bool facingRight;
+
 
     void Start()
     {
+        facingRight = true;
         ground = LayerMask.GetMask("Ground");
         r2d = GetComponent<Rigidbody2D>();
     }
@@ -43,11 +46,26 @@ public class Player : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal" + id);
         movement.y = Input.GetAxisRaw("Vertical" + id);
 
+        flip(movement.x);
+
         Move();
         if (Input.GetAxisRaw("Jump" + id) != 0 && isGrounded())
             Jump();
         if (Input.GetAxisRaw("Fire1_" + id) != 0)
             fireAction();
+    }
+
+    protected void flip(float direction)
+    {
+        if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
+        {
+            facingRight = !facingRight;
+
+            Vector3 theScale = transform.localScale;
+
+            theScale.x *= -1;
+            transform.localScale = theScale;
+        }
     }
 
     protected bool isGrounded()
