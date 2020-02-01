@@ -5,9 +5,14 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 public class LightFocus : MonoBehaviour
 {
-    
+
     [SerializeField]
     private Transform marker;
+
+    [SerializeField]
+    private GameObject circleLightBig;
+    [SerializeField]
+    private GameObject circleLightSmall;
 
     private bool beamActive;
 
@@ -17,7 +22,10 @@ public class LightFocus : MonoBehaviour
     void Start()
     {
         light = GetComponent<Light2D>();
+        light = GetComponent<Light2D>();
         poly = GetComponent<PolygonCollider2D>();
+
+
     }
 
     // Update is called once per frame
@@ -27,6 +35,12 @@ public class LightFocus : MonoBehaviour
         {
             light.enabled = true;
             poly.enabled = true;
+
+            circleLightBig.GetComponent<Light2D>().enabled = false;
+            circleLightBig.GetComponent<CircleCollider2D>().enabled = false;
+            circleLightSmall.GetComponent<Light2D>().enabled = true;
+            circleLightSmall.GetComponent<CircleCollider2D>().enabled = true;
+
 
             var angle = Mathf.Atan2(marker.localPosition.y, marker.localPosition.x) * Mathf.Rad2Deg;
 
@@ -39,7 +53,13 @@ public class LightFocus : MonoBehaviour
             light.enabled = false;
             poly.enabled = false;
             beamActive = false;
+
+            circleLightBig.GetComponent<Light2D>().enabled = true;
+            circleLightBig.GetComponent<CircleCollider2D>().enabled = true;
+            circleLightSmall.GetComponent<Light2D>().enabled = false;
+            circleLightSmall.GetComponent<CircleCollider2D>().enabled = false;
         }
+        
     }
 
     public bool BeamActive
