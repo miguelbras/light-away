@@ -10,15 +10,17 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
     override
     public void FixedUpdate()
     {        
-        if(!isDead && !isEating){
+        if(canAct()){
             distanceToLight = DistanceToLight();
             if(distanceToLight < aIDistance)
-            {                     
+            {   
+                currentState = state.moving;                  
                 HandleMovement();
                 FaceLight();   
             }
             else
-            {                     
+            {       
+                currentState = state.idle;              
                 StopMovement();
             }
         }
@@ -26,28 +28,28 @@ public class GhostEnemyBehaviourScript : EnemyBehaviourScript
 
     override
     public void HandleMovement(){        
+        // Calculates direction for straight line to light player
+        float directionX = Mathf.Min((lightPlayer.transform.position.x - transform.position.x) / distanceToLight, speed);
+        float directionY = Mathf.Min((lightPlayer.transform.position.y - transform.position.y) / distanceToLight, speed);
 
-        if(!onFocusedLight){
-            // Calculates direction for straight line to light player
-            float directionX = Mathf.Min((lightPlayer.transform.position.x - transform.position.x) / distanceToLight, speed);
-            float directionY = Mathf.Min((lightPlayer.transform.position.y - transform.position.y) / distanceToLight, speed);
-
-            rigidBody.velocity = new Vector2(directionX * speed, directionY * speed);
-        }
-        
+        rigidBody.velocity = new Vector2(directionX * speed, directionY * speed);             
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {    
-        if(!isDead){
-            if(other.tag=="GhostPlayer"){
-                Die();
-            }
-            else if(other.tag=="LightPlayer"){
-                AttackLight();
-            }
+        if(other.tag == "GhostPlayer"){
+            Die();
         }
-        
+        else if(other.tag == "LightPlayer" && canAct()){
+            AttackLight();
+        }        
+    }
+
+    void OnTriggerStay2D(Collider2D other)
+    {           
+        if(canAct() && other.tag == "LightPlayer"){
+            AttackLight();        
+        }
     }
 
     
