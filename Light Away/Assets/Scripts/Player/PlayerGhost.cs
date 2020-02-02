@@ -105,32 +105,28 @@ public class PlayerGhost : Player
         Debug.Log("Ghost pressing things");
     }
 
-
     public void bump()
     {
         r2d.velocity = new Vector2(0, 0);
         r2d.AddForce(new Vector2(0, bumpForce), ForceMode2D.Impulse);
     }
 
-
-    void OnTriggerStay2D(Collider2D collider)
+    void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "BeamLight" || collider.gameObject.tag == "CircleLight")
         {
-            if(coroutine != null)
-            {
-                StopCoroutine(coroutine);
-            }
-
             if (Physics2D.OverlapCircle(transform.position, .1f, ground) == null)
-            {
-                coroutine = StartCoroutine(LeaveGhost());
                 turnIntoHuman();
-            }
         }
     }
 
-    
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "BeamLight" || collider.gameObject.tag == "CircleLight")
+        {
+            turnIntoGhost();
+        }
+    }
 
     private IEnumerator LeaveGhost()
     {
