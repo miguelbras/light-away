@@ -66,10 +66,14 @@ public class Player : MonoBehaviour
         {
             facingRight = !facingRight;
 
-            Vector3 theScale = transform.localScale;
+            if(id == "1")
+                Debug.Log(facingRight);
 
-            theScale.x *= -1;
-            transform.localScale = theScale;
+            //Vector3 theScale = transform.localScale;
+
+            //theScale.x *= -1;
+            //transform.localScale = theScale;
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
     }
 

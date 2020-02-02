@@ -32,16 +32,16 @@ public class PlayerGirl : Player
     {
         movement.x = Input.GetAxisRaw("Horizontal" + id);
         movement.y = Input.GetAxisRaw("Vertical" + id);
-        flip(movement.x);
+        
         if (!isDead)
         {
+            flip(movement.x);
             Move();
-            if (Input.GetAxisRaw("Jump" + id) != 0 && isGrounded())
+            grounded = isGrounded();
+            if (Input.GetAxisRaw("Jump" + id) != 0 && grounded)
                 Jump();
             if (Input.GetAxisRaw("Fire1_" + id) != 0)
                 fireAction();
-            if (Input.GetKeyDown(KeyCode.T))
-                oof(0);
             if (Input.GetAxis("BeamVertical1") != 0 || Input.GetAxis("BeamHorizontal1") != 0)
                 beamActive = true;
             else
@@ -63,10 +63,8 @@ public class PlayerGirl : Player
 
     private void Death()
     {
-        Debug.Log("Death..");
         isDead = true;
         StartCoroutine(Restart());
-
     }
 
     public void takeDamage(float dmg)
