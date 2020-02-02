@@ -200,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4587654599394591618, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff,
+        type: 3}
+      propertyPath: m_AssetsPPU
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff, type: 3}
 --- !u!1 &944389629 stripped
@@ -497,31 +502,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1100222016}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1313895975 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2206193323453383900, guid: aa663cbb522b2ca4aba182444b88d220,
-    type: 3}
-  m_PrefabInstance: {fileID: 1382177260}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1313895976
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1313895975}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 500347039ef27b842a6ff8e76a326477, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1328842566
 GameObject:
   m_ObjectHideFlags: 0
@@ -637,40 +617,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1882451063, guid: aa663cbb522b2ca4aba182444b88d220, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 500347039ef27b842a6ff8e76a326477, type: 2}
-    - target: {fileID: 2206193323453383896, guid: aa663cbb522b2ca4aba182444b88d220,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: f45eb0f4d9edc494eae6f013f7015308,
-        type: 3}
-    - target: {fileID: 2206193323453383896, guid: aa663cbb522b2ca4aba182444b88d220,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206193323453383896, guid: aa663cbb522b2ca4aba182444b88d220,
-        type: 3}
-      propertyPath: m_Size.y
-      value: 1.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2206193323453383896, guid: aa663cbb522b2ca4aba182444b88d220,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.45
+      value: -5.54
       objectReference: {fileID: 0}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}
@@ -732,8 +687,7 @@ PrefabInstance:
       propertyPath: ghostPlayer
       value: 
       objectReference: {fileID: 1220809650}
-    m_RemovedComponents:
-    - {fileID: 1882451063, guid: aa663cbb522b2ca4aba182444b88d220, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa663cbb522b2ca4aba182444b88d220, type: 3}
 --- !u!1 &1414550714 stripped
 GameObject:
