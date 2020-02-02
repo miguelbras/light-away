@@ -12,6 +12,7 @@ TagManager:
   - Light
   - CircleLight
   - BeamLight
+  - Crate
   layers:
   - Default
   - TransparentFX

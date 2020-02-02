@@ -94,6 +94,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   physicalObjectTag:
+  - LightPlayer
+  - GhostPlayer
   - Player
   linkedObject:
   - {fileID: 0}
