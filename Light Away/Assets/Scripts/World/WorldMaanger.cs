@@ -8,6 +8,9 @@ public class WorldMaanger : MonoBehaviour
     enum GAME_STATE { RUNNING, PAUSED};
 
     [SerializeField]
+    GameObject groundObject;
+
+    [SerializeField]
     GAME_STATE gameState = GAME_STATE.RUNNING;
 
     [SerializeField]
@@ -134,4 +137,5 @@ public class WorldMaanger : MonoBehaviour
         if(itemsInIventory[item] > 0)
             itemsInIventory[item] = itemsInIventory[item] - 1;
     }
+    
 }

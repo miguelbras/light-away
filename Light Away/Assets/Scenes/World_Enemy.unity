@@ -200,6 +200,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LightPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 4587654599394591618, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff,
+        type: 3}
+      propertyPath: m_AssetsPPU
+      value: 32
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9d521b57f6f94dc4b9d0a5cb0a49a4ff, type: 3}
 --- !u!1 &944389629 stripped
@@ -612,19 +617,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1882451063, guid: aa663cbb522b2ca4aba182444b88d220, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 500347039ef27b842a6ff8e76a326477, type: 2}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.02
+      value: -5.54
       objectReference: {fileID: 0}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.94
+      value: 1.03
       objectReference: {fileID: 0}
     - target: {fileID: 2206193323453383897, guid: aa663cbb522b2ca4aba182444b88d220,
         type: 3}

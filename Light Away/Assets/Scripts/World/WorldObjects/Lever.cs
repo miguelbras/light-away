@@ -18,18 +18,27 @@ public class Lever : MonoBehaviour
     [SerializeField]
     GameObject [] linkedObject;
 
+    [SerializeField]
+    string ghostPlayerTag = "GhostPlayer";
+
+    [SerializeField]
+    SpriteRenderer spriteRenderer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    private void Update()
-    {
-        //TODO: DELETE ME
-        if(Input.GetKey(KeyCode.Return))
+    
+    private void OnTriggerStay2D(Collider2D collision)
+{
+        GameObject go = collision.gameObject;
+        if(go.tag == ghostPlayerTag)
         {
-            interact();
+            if(!go.GetComponent<PlayerGhost>().isGhostPlayer())
+            {
+                interact();
+            }
         }
     }
 
@@ -39,7 +48,6 @@ public class Lever : MonoBehaviour
         {
             if(required != PICK_UP.NONE)
             {
-                Debug.Log(required);
                 WorldMaanger worldManagerScript = worldManager.GetComponent<WorldMaanger>();
                 if (worldManagerScript.hasRequiredObject(required))
                 {
@@ -55,8 +63,8 @@ public class Lever : MonoBehaviour
                 //TODO: FLIP SPRITE of LO
                 lo.GetComponent<Door>().performAction();
             }
+            spriteRenderer.flipX = true;
             isActivated = true;
         }
     }
-
 }
