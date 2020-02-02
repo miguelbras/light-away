@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GhostEnemyIdle
+  m_Name: Iddle
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -19,15 +19,17 @@ AnimationClip:
   m_FloatCurves: []
   m_PPtrCurves:
   - curve:
-    - time: 0
-      value: {fileID: 21300000, guid: 9fa2b38ee6ac8714d8cb74515a1e6c48, type: 3}
-    - time: 0.5
-      value: {fileID: 21300000, guid: d15267c0c64e02b43a0aeafbe53f310a, type: 3}
+    - time: 0.016666668
+      value: {fileID: 21300000, guid: 61489147f8556c14aa5d925a517fa6b7, type: 3}
+    - time: 0.43333334
+      value: {fileID: 21300000, guid: cf32d9f976afed34db96b51952cb937b, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: 61489147f8556c14aa5d925a517fa6b7, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
     script: {fileID: 0}
-  m_SampleRate: 2
+  m_SampleRate: 60
   m_WrapMode: 0
   m_Bounds:
     m_Center: {x: 0, y: 0, z: 0}
@@ -42,14 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 9fa2b38ee6ac8714d8cb74515a1e6c48, type: 3}
-    - {fileID: 21300000, guid: d15267c0c64e02b43a0aeafbe53f310a, type: 3}
+    - {fileID: 21300000, guid: 61489147f8556c14aa5d925a517fa6b7, type: 3}
+    - {fileID: 21300000, guid: cf32d9f976afed34db96b51952cb937b, type: 3}
+    - {fileID: 21300000, guid: 61489147f8556c14aa5d925a517fa6b7, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1
+    m_StopTime: 0.84999996
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

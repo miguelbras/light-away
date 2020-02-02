@@ -35,6 +35,7 @@ public class Player : MonoBehaviour
     protected Vector2 movement;
 
     protected bool facingRight;
+    protected bool grounded;
 
     void Start()
     {
@@ -52,7 +53,8 @@ public class Player : MonoBehaviour
         flip(movement.x);
 
         Move();
-        if (Input.GetAxisRaw("Jump" + id) != 0 && isGrounded())
+        grounded = isGrounded();
+        if (Input.GetAxisRaw("Jump" + id) != 0 && grounded)
             Jump();
         if (Input.GetAxisRaw("Fire1_" + id) != 0)
             fireAction();
@@ -80,9 +82,13 @@ public class Player : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 if (colliders[i].gameObject != gameObject && colliders[i].tag != "Light")
+                {
+                    anim.SetBool("jumping", false); 
                     return true;
+                }
             }
         }
+        anim.SetBool("jumping", true);
         return false;
     }
 
