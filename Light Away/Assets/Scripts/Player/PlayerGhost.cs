@@ -12,6 +12,8 @@ public class PlayerGhost : Player
     private GameObject camera_object;
     private Camera camera_component;
 
+    private Collider2D col;
+
     private Coroutine coroutine;
 
     private int bumpForce = 6;
@@ -25,6 +27,7 @@ public class PlayerGhost : Player
     {
         facingRight = true;
         r2d = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
         camera_component = camera_object.GetComponent<Camera>();
         anim = GetComponent<Animator>();
         ground = LayerMask.GetMask("Ground");
@@ -89,12 +92,15 @@ public class PlayerGhost : Player
     private void turnIntoGhost()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
+
+        col.isTrigger = true;
         isGhost = true;
     }
 
     private void turnIntoHuman()
     {
         GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+        col.isTrigger = false;
         isGhost = false;
     }
 
