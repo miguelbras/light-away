@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     protected float speed = 200;
     protected float jumpForce = 250;
 
+    [SerializeField]
     protected LayerMask ground;
 
     [SerializeField]

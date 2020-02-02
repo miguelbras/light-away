@@ -18,10 +18,13 @@ public class PlayerGhost : Player
 
     private float deghostTime = 0.1f;
 
+    [SerializeField]
+    GameObject world;
+
     void Start()
     {
         facingRight = true;
-        ground = LayerMask.GetMask("Ground");
+       // ground = LayerMask.GetMask("Ground");
 
         r2d = GetComponent<Rigidbody2D>();
         camera_component = camera_object.GetComponent<Camera>();
@@ -126,6 +129,8 @@ public class PlayerGhost : Player
             }
         }
     }
+
+    
 
     private IEnumerator LeaveGhost()
     {

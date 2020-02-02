@@ -29,22 +29,13 @@ public class Lever : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
-    private void Update()
-    {
-        //TODO: DELETE ME
-        if(Input.GetKey(KeyCode.Return))
-        {
-            interact();
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
+    
+    private void OnTriggerStay2D(Collider2D collision)
+{
         GameObject go = collision.gameObject;
         if(go.tag == ghostPlayerTag)
         {
-            if(go.GetComponent<PlayerGhost>().isGhostPlayer())
+            if(!go.GetComponent<PlayerGhost>().isGhostPlayer())
             {
                 interact();
             }
