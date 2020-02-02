@@ -6,6 +6,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
 {
     protected Animator animator;
     protected Rigidbody2D rigidBody; 
+    
     protected Collider2D selfCollider;
     protected Collider2D groundCollider;
     protected SpriteRenderer spriteRend;    

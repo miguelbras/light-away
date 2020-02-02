@@ -16,6 +16,8 @@ public class PlayerGhost : Player
 
     private int bumpForce = 6;
 
+    private float deghostTime = 0.1f;
+
     void Start()
     {
         facingRight = true;
@@ -40,9 +42,7 @@ public class PlayerGhost : Player
             Jump();
         if (Input.GetAxisRaw("Fire1_" + id) != 0)
             bump();
-
-        if(!grounded)
-
+        
         handleLayers();
         clampMeToCamera();
     }
@@ -129,7 +129,7 @@ public class PlayerGhost : Player
 
     private IEnumerator LeaveGhost()
     {
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(deghostTime);
         turnIntoGhost();
     }
 
