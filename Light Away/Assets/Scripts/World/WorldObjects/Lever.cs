@@ -48,7 +48,7 @@ public class Lever : MonoBehaviour
         {
             if(required != PICK_UP.NONE)
             {
-                WorldMaanger worldManagerScript = worldManager.GetComponent<WorldMaanger>();
+                WorldManager worldManagerScript = worldManager.GetComponent<WorldManager>();
                 if (worldManagerScript.hasRequiredObject(required))
                 {
                     worldManagerScript.removeItem(required);

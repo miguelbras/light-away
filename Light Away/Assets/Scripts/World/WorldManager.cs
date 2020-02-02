@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class WorldMaanger : MonoBehaviour
+public class WorldManager : MonoBehaviour
 {
     enum GAME_STATE { RUNNING, PAUSED};
 
@@ -35,6 +35,8 @@ public class WorldMaanger : MonoBehaviour
     
     Dictionary<PICK_UP, int> itemsInIventory = new Dictionary<PICK_UP, int>();
 
+    [SerializeField]
+    GameObject portal;
 
 
     // Start is called before the first frame update
@@ -138,4 +140,20 @@ public class WorldMaanger : MonoBehaviour
             itemsInIventory[item] = itemsInIventory[item] - 1;
     }
     
+    public void pickUpGem(PICK_UP gemType)
+    {
+        switch(gemType)
+        {
+            default:
+            case (PICK_UP.BLUE_GEM):
+                portal.GetComponent<SwirlControl>().pickedBlue();
+                break;
+            case (PICK_UP.RED_GEM):
+                portal.GetComponent<SwirlControl>().pickedRed();
+                break;
+            case (PICK_UP.GREEN_GEM):
+                portal.GetComponent<SwirlControl>().pickedGreen();
+                break;
+        }
+    }
 }

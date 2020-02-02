@@ -39,8 +39,6 @@ public class SwirlControl : MonoBehaviour
     {
         color.r = 1f;
         renderer.color = color;
-        Debug.Log(color);
-        Debug.Log(renderer.color);
         nextState();
     }
 
