@@ -24,12 +24,10 @@ public class PlayerGhost : Player
     void Start()
     {
         facingRight = true;
-       // ground = LayerMask.GetMask("Ground");
-
         r2d = GetComponent<Rigidbody2D>();
         camera_component = camera_object.GetComponent<Camera>();
         anim = GetComponent<Animator>();
-
+        ground = LayerMask.GetMask("Ground");
         coroutine = null;
     }
 
@@ -114,6 +112,15 @@ public class PlayerGhost : Player
     void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "BeamLight" || collider.gameObject.tag == "CircleLight")
+        {
+            if (Physics2D.OverlapCircle(transform.position, .1f, ground) == null)
+                turnIntoHuman();
+        }
+    }
+
+    void OnTriggerStay2D(Collider2D collider)
+    {
+        if ((collider.gameObject.tag == "BeamLight" || collider.gameObject.tag == "CircleLight") && isGhost)
         {
             if (Physics2D.OverlapCircle(transform.position, .1f, ground) == null)
                 turnIntoHuman();
