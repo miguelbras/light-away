@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SwirlControl : MonoBehaviour
 {
@@ -13,7 +14,11 @@ public class SwirlControl : MonoBehaviour
     private SpriteRenderer renderer;
     private Color color;
 
-    
+    [SerializeField]
+    CapsuleCollider2D portalCollider;
+
+    [SerializeField]
+    string lightPlayerTag;
 
     // Start is called before the first frame update
     void Start()
@@ -26,6 +31,8 @@ public class SwirlControl : MonoBehaviour
         renderer = GetComponentsInChildren<SpriteRenderer>()[1];
         color = new Color(0, 0, 0, 1);
         renderer.color = color;
+
+        portalCollider = GetComponent<CapsuleCollider2D>();
     }
 
     // Update is called once per frame
@@ -34,6 +41,14 @@ public class SwirlControl : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.tag == lightPlayerTag)
+        {
+
+            SceneManager.LoadScene(0);
+        }
+    }
 
     public void pickedRed()
     {
@@ -72,6 +87,7 @@ public class SwirlControl : MonoBehaviour
         {
             colAnim.SetTrigger("toC");
             state += 1;
+            portalCollider.enabled = true;
         }
 
 
