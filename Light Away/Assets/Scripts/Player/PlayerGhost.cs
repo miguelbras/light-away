@@ -130,4 +130,9 @@ public class PlayerGhost : Player
         turnIntoGhost();
     }
 
+    public bool isGhostPlayer()
+    {
+        return isGhost;
+    }
+
 }
