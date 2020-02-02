@@ -55,7 +55,13 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         selfCollider = GetComponent<Collider2D>();
-        groundCollider = GetComponentInChildren<BoxCollider2D>();        
+        BoxCollider2D[] arr = GetComponentsInChildren<BoxCollider2D>();
+
+        for(int i = 0; i< arr.Length; i++){
+            if(arr[i].tag == "GroundCollider"){
+                groundCollider = arr[i];
+            }
+        }
 
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Enemy"), LayerMask.NameToLayer("Enemy"));
     }
@@ -136,8 +142,8 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     {
         // Disable groundcollider to interact with player
         if(groundCollider){
-            Physics2D.IgnoreCollision(lightPlayer.GetComponent<Collider2D>(), groundCollider);
-            Physics2D.IgnoreCollision(ghostPlayer.GetComponent<Collider2D>(), groundCollider);
+            Physics2D.IgnoreCollision(lightPlayer.GetComponent<BoxCollider2D>(), groundCollider, true);
+            Physics2D.IgnoreCollision(ghostPlayer.GetComponent<BoxCollider2D>(), groundCollider, true);            
         }
 
         for (float f = 1f; f >= -0.05f; f -= 0.05f) 
@@ -145,6 +151,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
             Color c = spriteRend.color;
             c.a = f;
             spriteRend.color = c;
+            Debug.Log(Physics2D.GetIgnoreCollision(lightPlayer.GetComponent<BoxCollider2D>(), groundCollider) );
             yield return new WaitForSeconds(0.05f);
         }
         
