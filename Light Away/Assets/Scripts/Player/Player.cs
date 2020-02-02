@@ -18,7 +18,10 @@ public class Player : MonoBehaviour
      * 
      */
 
+    protected Animator anim;
+
     protected float speed = 200;
+    protected float jumpForce = 250;
 
     protected LayerMask ground;
 
@@ -33,12 +36,12 @@ public class Player : MonoBehaviour
 
     protected bool facingRight;
 
-
     void Start()
     {
         facingRight = true;
         ground = LayerMask.GetMask("Ground");
         r2d = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -76,7 +79,7 @@ public class Player : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject && colliders[i].tag != "Light")
+                if (colliders[i].gameObject != gameObject && colliders[i].tag != "BeamLight" && colliders[i].tag != "CircleLight")
                     return true;
             }
         }
@@ -85,13 +88,13 @@ public class Player : MonoBehaviour
 
     protected void Jump()
     {
-        //Debug.Log(transform.name + " : " + Input.GetAxisRaw("Jump" + id));
         r2d.velocity = new Vector2(r2d.velocity.x, 0);
-        r2d.AddForce(new Vector2(0,250));
+        r2d.AddForce(new Vector2(0,jumpForce));
     }
 
     protected void Move()
     {
+        anim.SetFloat("speed", Math.Abs(movement.x));
         r2d.velocity = new Vector2(movement.x * speed * Time.deltaTime, r2d.velocity.y);
     }
 

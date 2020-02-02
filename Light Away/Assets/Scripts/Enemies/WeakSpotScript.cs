@@ -7,7 +7,8 @@ public class WeakSpotScript : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     {    
         if(other.tag == "GhostPlayer"){
-            transform.GetComponentsInParent<EnemyBehaviourScript>()[0].Die();
+            transform.GetComponentInParent<EnemyBehaviourScript>().BumpPlayer();
+            transform.GetComponentInParent<EnemyBehaviourScript>().Die();                        
         }            
     }
 

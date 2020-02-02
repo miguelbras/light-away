@@ -13,9 +13,7 @@ public class PlayerGirl : Player
     bool beamActive = false;
 
     private float health;
-
-
-    Animator anim;
+    private float maxHealth;
 
     Vector3 lastCheckpoint = new Vector3(0, 0, 0);
 
@@ -27,6 +25,7 @@ public class PlayerGirl : Player
         healthBar = obj.GetComponent<HealthBar>();
         anim = GetComponent<Animator>();
         health = 100;
+        maxHealth = 100;
     }
 
     void FixedUpdate()
@@ -42,12 +41,11 @@ public class PlayerGirl : Player
             if (Input.GetAxisRaw("Fire1_" + id) != 0)
                 fireAction();
             if (Input.GetKeyDown(KeyCode.T))
-                oof();
+                oof(0);
             if (Input.GetAxis("BeamVertical1") != 0 || Input.GetAxis("BeamHorizontal1") != 0)
                 beamActive = true;
             else
                 beamActive = false;
-
         }
 
         if (beamActive)
@@ -67,12 +65,11 @@ public class PlayerGirl : Player
     {
         Debug.Log("Death..");
         isDead = true;
-        anim.SetBool("isDying",true);
         StartCoroutine(Restart());
 
     }
 
-    private void takeDamage(float dmg)
+    public void takeDamage(float dmg)
     {
         if( (health - dmg) > 0)
         {
@@ -89,11 +86,11 @@ public class PlayerGirl : Player
         }
     }
 
-    private void getHealth(float hp)
+    public void getHealth(float hp)
     {
-        if(health + hp >= 100)
+        if(health + hp >= maxHealth)
         {
-            health = 100;
+            health = maxHealth;
         }
         else
         {
@@ -104,7 +101,7 @@ public class PlayerGirl : Player
 
     private void restoreHP()
     {
-        health = 100;
+        health = maxHealth;
         healthBar.setSize(1f);
     }
 
@@ -119,7 +116,7 @@ public class PlayerGirl : Player
     }
 
     
-    private void oof()
+    public void oof(float otherX)
     {
         Vector2 diff = new Vector2(10, 15);
         diff.Normalize();
