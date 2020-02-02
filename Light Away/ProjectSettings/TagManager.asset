@@ -14,6 +14,7 @@ TagManager:
   - BeamLight
   - Crate
   - Portal
+  - GroundCollider
   layers:
   - Default
   - TransparentFX
@@ -48,6 +49,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bACKGROUND
+    uniqueID: 226988857
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

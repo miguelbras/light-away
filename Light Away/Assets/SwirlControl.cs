@@ -46,7 +46,7 @@ public class SwirlControl : MonoBehaviour
         if(collision.gameObject.tag == lightPlayerTag)
         {
 
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(2);
         }
     }
 

@@ -90,6 +90,7 @@ public class WorldManager : MonoBehaviour
                 handlePause();
                 break;
             case MENU_STATE.EXIT:
+                Time.timeScale = 1f;
                 SceneManager.LoadScene(0);
                 break;
         }

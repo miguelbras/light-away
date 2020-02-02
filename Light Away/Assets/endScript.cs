@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class endScript : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class endScript : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Escape) || Input.GetKey(KeyCode.Return))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 }
