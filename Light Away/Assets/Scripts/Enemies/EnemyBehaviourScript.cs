@@ -6,7 +6,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
 {
     protected Animator animator;
     protected Rigidbody2D rigidBody; 
-    
+
     protected Collider2D selfCollider;
     protected Collider2D groundCollider;
     protected SpriteRenderer spriteRend;    
@@ -105,7 +105,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
         // stop movement
         StopMovement();        
         StartCoroutine("Eating");
-        lightPlayer.GetComponentInParent<PlayerGirl>().oof(transform.position.x);
+        lightPlayer.GetComponentInParent<PlayerGirl>().oof(transform);
         lightPlayer.GetComponentInParent<PlayerGirl>().takeDamage(33);
     }
 

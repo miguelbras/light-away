@@ -15,6 +15,10 @@ public class PlayerGirl : Player
     private float health;
     private float maxHealth;
 
+    private bool isInjured;
+
+    private float injuredTime = 0.5f;
+
     Vector3 lastCheckpoint = new Vector3(0, 0, 0);
 
     void Start()
@@ -26,6 +30,7 @@ public class PlayerGirl : Player
         anim = GetComponent<Animator>();
         health = 100;
         maxHealth = 100;
+        isInjured = false;
     }
 
     void FixedUpdate()
@@ -33,7 +38,7 @@ public class PlayerGirl : Player
         movement.x = Input.GetAxisRaw("Horizontal" + id);
         movement.y = Input.GetAxisRaw("Vertical" + id);
         
-        if (!isDead)
+        if (!isDead && !isInjured)
         {
             flip(movement.x);
             Move();
@@ -114,11 +119,27 @@ public class PlayerGirl : Player
     }
 
     
-    public void oof(float otherX)
+    public void oof(Transform enemy)
     {
-        Vector2 diff = new Vector2(10, 15);
+        /*Vector2 diff = transform.position - enemy.position;
         diff.Normalize();
-        r2d.AddForce(diff * 2, ForceMode2D.Impulse);
+        r2d.AddForce(diff * 20, ForceMode2D.Impulse);*/
+        float bumpForce = 2;
+
+        if(enemy.position.x > transform.position.x)
+            bumpForce *= -1;
+
+        r2d.velocity = new Vector2(bumpForce, 2);
+        StartCoroutine("Injured"); 
+        //r2d.AddForce(new Vector2(bumpForce, 1), ForceMode2D.Impulse);
+    }
+
+    IEnumerator Injured()
+    {
+        isInjured = true;
+        yield return new WaitForSeconds(injuredTime); 
+
+        isInjured = false;
     }
     
 }

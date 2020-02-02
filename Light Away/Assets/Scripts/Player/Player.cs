@@ -66,14 +66,6 @@ public class Player : MonoBehaviour
         if ((direction > 0 && !facingRight) || (direction < 0 && facingRight))
         {
             facingRight = !facingRight;
-
-            if(id == "1")
-                Debug.Log(facingRight);
-
-            //Vector3 theScale = transform.localScale;
-
-            //theScale.x *= -1;
-            //transform.localScale = theScale;
             GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
     }
