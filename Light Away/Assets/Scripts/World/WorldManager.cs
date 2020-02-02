@@ -38,7 +38,14 @@ public class WorldManager : MonoBehaviour
     [SerializeField]
     GameObject portal;
 
+    [SerializeField]
+    GameObject redGemBubble;
 
+    [SerializeField]
+    GameObject greenGemBubble;
+
+    [SerializeField]
+    GameObject blueGemBubble;
     // Start is called before the first frame update
     void Start()
     {
@@ -146,12 +153,15 @@ public class WorldManager : MonoBehaviour
         {
             default:
             case (PICK_UP.BLUE_GEM):
+                Destroy(blueGemBubble);
                 portal.GetComponent<SwirlControl>().pickedBlue();
                 break;
             case (PICK_UP.RED_GEM):
+                Destroy(redGemBubble);
                 portal.GetComponent<SwirlControl>().pickedRed();
                 break;
             case (PICK_UP.GREEN_GEM):
+                Destroy(greenGemBubble);
                 portal.GetComponent<SwirlControl>().pickedGreen();
                 break;
         }
