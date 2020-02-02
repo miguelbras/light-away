@@ -57,8 +57,6 @@ public class Player : MonoBehaviour
         grounded = isGrounded();
         if (Input.GetAxisRaw("Jump" + id) != 0 && grounded)
             Jump();
-        if (Input.GetAxisRaw("Fire1_" + id) != 0)
-            fireAction();
     }
 
     protected void flip(float direction)
@@ -99,9 +97,5 @@ public class Player : MonoBehaviour
         anim.SetFloat("speed", Math.Abs(movement.x));
         r2d.velocity = new Vector2(movement.x * speed * Time.deltaTime, r2d.velocity.y);
     }
-
-    protected void fireAction()
-    {
-        Debug.Log("Testing firing");
-    }
+    
 }

@@ -8,7 +8,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     protected Rigidbody2D rigidBody; 
 
     protected Collider2D selfCollider;
-    protected Collider2D groundCollider;
+    protected Collider2D groundCollider = null;
     protected SpriteRenderer spriteRend;    
 
     protected enum state {idle, moving, paralyzed, eating, dead};
@@ -141,7 +141,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     IEnumerator FadeOut()
     {
         // Disable groundcollider to interact with player
-        if(groundCollider){
+        if(groundCollider != null){
             Physics2D.IgnoreCollision(lightPlayer.GetComponent<BoxCollider2D>(), groundCollider, true);
             Physics2D.IgnoreCollision(ghostPlayer.GetComponent<BoxCollider2D>(), groundCollider, true);            
         }
@@ -151,7 +151,6 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
             Color c = spriteRend.color;
             c.a = f;
             spriteRend.color = c;
-            Debug.Log(Physics2D.GetIgnoreCollision(lightPlayer.GetComponent<BoxCollider2D>(), groundCollider) );
             yield return new WaitForSeconds(0.05f);
         }
         
@@ -172,7 +171,7 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
         currentState = state.idle;
 
         // Activate groundcollider to interact with player
-        if(groundCollider){
+        if(groundCollider != null){
             Physics2D.IgnoreCollision(lightPlayer.GetComponent<Collider2D>(), groundCollider, false);
             Physics2D.IgnoreCollision(ghostPlayer.GetComponent<Collider2D>(), groundCollider, false);
         }

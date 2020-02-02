@@ -44,8 +44,6 @@ public class PlayerGhost : Player
         grounded = isGrounded();
         if (Input.GetAxisRaw("Jump" + id) != 0 && grounded && !isGhost)
             Jump();
-        if (Input.GetAxisRaw("Fire1_" + id) != 0)
-            bump();
         
         handleLayers();
         clampMeToCamera();
@@ -104,10 +102,6 @@ public class PlayerGhost : Player
         isGhost = false;
     }
 
-    private void fireAction()
-    {
-        Debug.Log("Ghost pressing things");
-    }
 
     public void bump()
     {

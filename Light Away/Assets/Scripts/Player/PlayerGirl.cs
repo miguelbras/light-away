@@ -21,6 +21,9 @@ public class PlayerGirl : Player
 
     Vector3 lastCheckpoint = new Vector3(0, 0, 0);
 
+    [SerializeField]
+    GameObject spawnPoint;
+
     void Start()
     {
         facingRight = true;
@@ -45,8 +48,6 @@ public class PlayerGirl : Player
             grounded = isGrounded();
             if (Input.GetAxisRaw("Jump" + id) != 0 && grounded)
                 Jump();
-            if (Input.GetAxisRaw("Fire1_" + id) != 0)
-                fireAction();
             if (Input.GetAxis("BeamVertical1") != 0 || Input.GetAxis("BeamHorizontal1") != 0)
                 beamActive = true;
             else
@@ -55,20 +56,16 @@ public class PlayerGirl : Player
 
         if (beamActive)
         {
-            takeDamage(Time.deltaTime * 2);
+            takeDamage(Time.deltaTime * 6);
         }
 
     }
 
-    protected void fireAction()
-    {
-        Debug.Log("Bruh");
-        //healthBar.setSize(0.4f);
-    }
 
     private void Death()
     {
         isDead = true;
+        anim.SetBool("isDying", true);
         StartCoroutine(Restart());
     }
 
@@ -111,7 +108,7 @@ public class PlayerGirl : Player
     private IEnumerator Restart()
     {
         yield return new WaitForSeconds(1);
-        transform.position = lastCheckpoint;
+        transform.position = spawnPoint.transform.position;
         isDead = false;
         anim.SetBool("isDying", false);
 
