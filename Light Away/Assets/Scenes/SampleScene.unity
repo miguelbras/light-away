@@ -383,7 +383,7 @@ GameObject:
   - component: {fileID: 246845313}
   m_Layer: 0
   m_Name: Tmp_Girl2
-  m_TagString: Player
+  m_TagString: LightPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 933279416}
   m_Layer: 0
   m_Name: Beam Point Light
-  m_TagString: Light
+  m_TagString: BeamLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2948,7 +2948,7 @@ GameObject:
   - component: {fileID: 1250768997}
   m_Layer: 0
   m_Name: Tmp_Ghost
-  m_TagString: Player
+  m_TagString: GhostPlayer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3468,7 +3468,7 @@ GameObject:
   - component: {fileID: 1911173701}
   m_Layer: 0
   m_Name: Point Light 2D Small
-  m_TagString: Light
+  m_TagString: CircleLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3557,7 +3557,7 @@ GameObject:
   - component: {fileID: 2032195672}
   m_Layer: 0
   m_Name: Point Light 2D Big
-  m_TagString: Light
+  m_TagString: CircleLight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

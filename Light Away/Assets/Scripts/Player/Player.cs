@@ -81,9 +81,8 @@ public class Player : MonoBehaviour
 
             for (int i = 0; i < colliders.Length; i++)
             {
-                if (colliders[i].gameObject != gameObject && colliders[i].tag != "Light")
-                {
-                    anim.SetBool("jumping", false); 
+                if (colliders[i].gameObject != gameObject && colliders[i].tag != "BeamLight" && colliders[i].tag != "CircleLight"){
+                    anim.SetBool("jumping", false);
                     return true;
                 }
             }

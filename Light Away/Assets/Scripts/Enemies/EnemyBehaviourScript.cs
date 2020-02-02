@@ -103,7 +103,9 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
     public void AttackLight(){
         // stop movement
         StopMovement();        
-        StartCoroutine("Eating");         
+        StartCoroutine("Eating");
+        lightPlayer.GetComponentInParent<PlayerGirl>().oof(transform.position.x);
+        lightPlayer.GetComponentInParent<PlayerGirl>().takeDamage(33);
     }
 
     // Kill enemy
@@ -113,7 +115,14 @@ abstract public class EnemyBehaviourScript : MonoBehaviour
             //Destroy(GetComponent<Collider2D>());
             //Destroy(GetComponentInChildren<Collider2D>());
             StopMovement();
+            lightPlayer.GetComponentInParent<PlayerGirl>().getHealth(33);
             StartCoroutine("FadeOut"); 
+        }
+    }
+
+    public void BumpPlayer(){
+        if(currentState != state.dead){
+            ghostPlayer.GetComponentInParent<PlayerGhost>().bump();
         }
     }
 

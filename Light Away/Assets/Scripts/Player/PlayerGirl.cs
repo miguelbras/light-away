@@ -41,7 +41,7 @@ public class PlayerGirl : Player
             if (Input.GetAxisRaw("Fire1_" + id) != 0)
                 fireAction();
             if (Input.GetKeyDown(KeyCode.T))
-                oof();
+                oof(0);
             if (Input.GetAxis("BeamVertical1") != 0 || Input.GetAxis("BeamHorizontal1") != 0)
                 beamActive = true;
             else
@@ -69,7 +69,7 @@ public class PlayerGirl : Player
 
     }
 
-    private void takeDamage(float dmg)
+    public void takeDamage(float dmg)
     {
         if( (health - dmg) > 0)
         {
@@ -86,7 +86,7 @@ public class PlayerGirl : Player
         }
     }
 
-    private void getHealth(float hp)
+    public void getHealth(float hp)
     {
         if(health + hp >= maxHealth)
         {
@@ -116,7 +116,7 @@ public class PlayerGirl : Player
     }
 
     
-    private void oof()
+    public void oof(float otherX)
     {
         Vector2 diff = new Vector2(10, 15);
         diff.Normalize();
