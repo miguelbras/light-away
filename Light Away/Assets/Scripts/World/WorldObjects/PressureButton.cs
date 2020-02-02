@@ -21,14 +21,50 @@ public class PressureButton : MonoBehaviour
         GameObject go = collision.gameObject;
         if(physicalObjectTag.Contains(go.tag))
         {
+            if(go.tag == "GhostPlayer")
+            {
+                if(go.GetComponent<PlayerGhost>().isGhostPlayer())
+                {
+                    return;
+                }
+            }
+
             if(!isActivated)
             {
                 foreach (GameObject lo in linkedObject)
                 {
-                    //TODO: FLIP SPRITE of LO
                     lo.GetComponent<Door>().performAction();
                 }
             }    
+            if (!objectsOnPressure.Contains(go.name))
+            {
+                objectsOnPressure.Add(go.name);
+            }
+            isActivated = true;
+        }
+    }
+
+    private void OnTriggerStay2D (Collider2D collision)
+    {
+
+        GameObject go = collision.gameObject;
+        if (physicalObjectTag.Contains(go.tag))
+        {
+            if (go.tag == "GhostPlayer")
+            {
+                if (go.GetComponent<PlayerGhost>().isGhostPlayer())
+                {
+                    return;
+                }
+            }
+
+            if (!isActivated)
+            {
+                foreach (GameObject lo in linkedObject)
+                {
+                    lo.GetComponent<Door>().performAction();
+                }
+            }
             if (!objectsOnPressure.Contains(go.name))
             {
                 objectsOnPressure.Add(go.name);
