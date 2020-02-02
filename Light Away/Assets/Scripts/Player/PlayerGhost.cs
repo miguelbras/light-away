@@ -35,11 +35,29 @@ public class PlayerGhost : Player
         flip(movement.x);
         Move();
         MoveVertical();
-        if (Input.GetAxisRaw("Jump" + id) != 0 && isGrounded() && !isGhost)
+        grounded = isGrounded();
+        if (Input.GetAxisRaw("Jump" + id) != 0 && grounded && !isGhost)
             Jump();
         if (Input.GetAxisRaw("Fire1_" + id) != 0)
             bump();
+
+        if(!grounded)
+
+        handleLayers();
         clampMeToCamera();
+    }
+
+    private void handleLayers()
+    {
+        if (isGhost)
+        {
+            //If it is grounded, we want to use the ground layer "0" 
+            anim.SetLayerWeight(1, 0);
+        }
+        else
+        {
+            anim.SetLayerWeight(1, 1);
+        }
     }
 
     private void clampMeToCamera()
